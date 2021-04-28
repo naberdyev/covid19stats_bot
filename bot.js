@@ -23,9 +23,10 @@ bot.on('text', async (ctx) => {
 
     try {
     data = await api.getReportsByCountries(ctx.message.text);
+    
     const formatData = `
 Страна: ${data[0][0].country}
-Cлучаи: ${data[0][0].cases}
+Cлучаи: ${data[0][0].NewCases}
 Смертей: ${data[0][0].deaths}
 Выздоровело: ${data[0][0].recovered} 
 `;
