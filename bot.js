@@ -26,7 +26,7 @@ bot.on('text', async (ctx) => {
     
     const formatData = `
 Страна: ${data[0][0].country}
-Cлучаи: ${data[0][0].NewCases}
+Cлучаи: ${data[0][0].cases}
 Смертей: ${data[0][0].deaths}
 Выздоровело: ${data[0][0].recovered} 
 `;
