@@ -51,3 +51,4 @@ Cлучаи: ${cases}
 bot.launch()
 console.log('Бот запущен');
 
+console.log(data[0][0].closed_cases);
