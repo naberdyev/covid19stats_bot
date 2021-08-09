@@ -29,19 +29,18 @@ bot.on('text', async (ctx) => {
     }
 
     let country = numberWithSpaces(data[0][0].country);
-    let cases = numberWithSpaces(data[0][0].country);
+    let cases = numberWithSpaces(data[0][0].cases);
     let deaths = numberWithSpaces(data[0][0].deaths);
     let recovered = numberWithSpaces(data[0][0].recovered);
     // let closedCases = numberWithSpaces(data[0][0].closed_cases[0].cases_which_had_an_outcome);
     // Случаев сегодня: ${closedCases}
-    console.log(data[0][0].closed_cases[0].cases_which_had_an_outcome);
+    // console.log(data[0][0].closed_cases[0].cases_which_had_an_outcome);
     
     const formatData = `
 Страна: ${country}
 Cлучаи: ${cases}
 Смертей: ${deaths}
-Выздоровело: ${recovered} 
-
+Выздоровело: ${recovered}
 `;
     ctx.reply(formatData);
         } catch {
