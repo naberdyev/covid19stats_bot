@@ -23,12 +23,22 @@ bot.on('text', async (ctx) => {
 
     try {
     data = await api.getReportsByCountries(ctx.message.text);
+
+    function numberWithSpaces(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    let country = numberWithSpaces(data[0][0].country);
+    let cases = numberWithSpaces(data[0][0].country);
+    let deaths = numberWithSpaces(data[0][0].deaths);
+    let recovered = numberWithSpaces(data[0][0].recovered)
+
     
     const formatData = `
-Страна: ${data[0][0].country}
-Cлучаи: ${data[0][0].cases}
-Смертей: ${data[0][0].deaths}
-Выздоровело: ${data[0][0].recovered} 
+Страна: ${country}
+Cлучаи: ${cases}
+Смертей: ${deaths}
+Выздоровело: ${recovered} 
 `;
     ctx.reply(formatData);
         } catch {
