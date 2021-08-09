@@ -32,6 +32,7 @@ bot.on('text', async (ctx) => {
     let cases = numberWithSpaces(data[0][0].country);
     let deaths = numberWithSpaces(data[0][0].deaths);
     let recovered = numberWithSpaces(data[0][0].recovered)
+    let closedCases = numberWithSpaces(data[0][0].closedCases[0].cases_which_had_an_outcome)
 
     
     const formatData = `
@@ -39,6 +40,7 @@ bot.on('text', async (ctx) => {
 Cлучаи: ${cases}
 Смертей: ${deaths}
 Выздоровело: ${recovered} 
+Случаев сегодня: ${closedCases}
 `;
     ctx.reply(formatData);
         } catch {
