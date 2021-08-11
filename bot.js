@@ -36,6 +36,7 @@ bot.on('text', async (ctx) => {
     let todayCases;
     async function today() {
         todayCases = await covidData();
+        console.log(todayCases);
         
     }
     today();
