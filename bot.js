@@ -1,6 +1,7 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
 const api = require('covid19-api')
+const api2 = require('corona-info')
 const Markup = require('telegraf').Markup
 const COUNTRIES_LIST = require('./constants');
 
@@ -20,9 +21,17 @@ bot.help((ctx) => ctx.reply(COUNTRIES_LIST));
 
 bot.on('text', async (ctx) => {
     let data = {};
+    ///api2///
+    
 
     try {
     data = await api.getReportsByCountries(ctx.message.text);
+
+    const covidData = async () => {
+        let data = await api2.findData({ country: "russia" });
+        console.log(data.todayCases)
+    }
+    ////api2 end////
 
     function numberWithSpaces(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -41,6 +50,7 @@ bot.on('text', async (ctx) => {
 Cлучаи: ${cases}
 Смертей: ${deaths}
 Выздоровело: ${recovered}
+Сегодня: ${covidData()}
 `;
     ctx.reply(formatData);
         } catch {
