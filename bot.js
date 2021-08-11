@@ -28,10 +28,10 @@ bot.on('text', async (ctx) => {
     data = await api.getReportsByCountries(ctx.message.text);
 
     let newCases;
-    const covidData = async () => {
-        let data = await api2.findData({ country: "russia" });
-        newCases = data.todayCases;
-    }
+    api2.findData({ country: "USA" }).then(res => {
+        console.log(res.todayCases);
+        newCases = res.todayCases;
+    });
     ////api2 end////
 
     function numberWithSpaces(x) {
