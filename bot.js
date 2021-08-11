@@ -27,9 +27,10 @@ bot.on('text', async (ctx) => {
     try {
     data = await api.getReportsByCountries(ctx.message.text);
 
+    let newCases;
     const covidData = async () => {
         let data = await api2.findData({ country: "russia" });
-        return data.todayCases;
+        newCases = data.todayCases;
     }
     ////api2 end////
 
@@ -50,7 +51,7 @@ bot.on('text', async (ctx) => {
 Cлучаи: ${cases}
 Смертей: ${deaths}
 Выздоровело: ${recovered}
-Сегодня: ${covidData()}
+Сегодня: ${newCases}
 `;
     ctx.reply(formatData);
         } catch {
