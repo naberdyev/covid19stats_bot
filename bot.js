@@ -29,7 +29,7 @@ bot.on('text', async (ctx) => {
 
     ///api2///
     const covidData = async () => {
-        let data = await covid.findData({ country: "russia" });
+        let data = await api2.findData({ country: "russia" });
         return data.todayCases;
     };
     ////api2 end////
