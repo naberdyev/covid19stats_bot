@@ -34,12 +34,6 @@ bot.on('text', async (ctx) => {
     };
     ////api2 end////
     let todayCases;
-    async function today() {
-        todayCases = await covidData();
-        console.log(todayCases);
-        
-    }
-    today();
 
     function numberWithSpaces(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -49,18 +43,19 @@ bot.on('text', async (ctx) => {
     let cases = numberWithSpaces(data[0][0].cases);
     let deaths = numberWithSpaces(data[0][0].deaths);
     let recovered = numberWithSpaces(data[0][0].recovered);
-    // let closedCases = numberWithSpaces(data[0][0].closed_cases[0].cases_which_had_an_outcome);
-    // Случаев сегодня: ${closedCases}
-    // console.log(data[0][0].closed_cases[0].cases_which_had_an_outcome);
-    
-    const formatData = `
+
+    async function go(params) {
+        todayCases = await covidData();
+        const formatData = `
 Страна: ${country}
 Cлучаи: ${cases}
 Смертей: ${deaths}
 Выздоровело: ${recovered}
 Сегодня: ${todayCases}
 `;
-    ctx.reply(formatData);
+ctx.reply(formatData);
+    }
+    go()
         } catch {
         console.log('Ошибка');
         ctx.reply('Ошибка. Такой страны не существует! Посмотрите /help');
