@@ -30,28 +30,21 @@ bot.on('text', async (ctx) => {
     ///api2///
     const covidData = async () => {
         let data = await api2.findData({ country: "russia" });
-        return data.todayCases;
+        return data;
     };
     ////api2 end////
-    let todayCases;
-
-    function numberWithSpaces(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
-
-    let country = numberWithSpaces(data[0][0].country);
-    let cases = numberWithSpaces(data[0][0].cases);
-    let deaths = numberWithSpaces(data[0][0].deaths);
-    let recovered = numberWithSpaces(data[0][0].recovered);
-
-    async function go(params) {
-        todayCases = await covidData();
+    
+  
+    async function go() {
+        let data = await covidData();
         const formatData = `
-Страна: ${country}
-Cлучаи: ${cases}
-Смертей: ${deaths}
-Выздоровело: ${recovered}
-Сегодня: ${todayCases}
+Данные на ${data.updatedDate} в ${data.countryName} ${data.countryFlag}:
+Всего случаев: ${data.cases}
+Всего выздоровело: ${data.recovered}
+Всего смертей: ${data.deaths}
+Заболело: ${data.todayCases}
+Выздоровело: ${data.todayRecovered}
+Умерло: ${data.todayDeaths}
 `;
 ctx.reply(formatData);
     }
