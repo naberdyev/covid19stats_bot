@@ -46,7 +46,6 @@ bot.on('text', async (ctx) => {
     // Случаев сегодня: ${closedCases}
     // console.log(data[0][0].closed_cases[0].cases_which_had_an_outcome);
     
-    covidData();
     const formatData = `
 Страна: ${country}
 Cлучаи: ${cases}
