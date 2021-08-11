@@ -37,12 +37,12 @@ bot.on('text', async (ctx) => {
         let data = await covidData();
         const formatData = `
 Данные на ${data.updatedDate} в ${data.countryName}:
-**Всего случаев:** ${data.cases}
-**Всего выздоровело:** ${data.recovered}
-**Всего смертей:** ${data.deaths}
-**Заболело сегодня:** ${data.todayCases}
-**Выздоровело сегодня:** ${data.todayRecovered}
-**Умерло сегодня:** ${data.todayDeaths}
+Всего случаев: ${data.cases}
+Всего выздоровело: ${data.recovered}
+Всего смертей: ${data.deaths}
+Заболело сегодня: ${data.todayCases}
+Выздоровело сегодня: ${data.todayRecovered}
+Умерло сегодня: ${data.todayDeaths}
 `;
 ctx.reply(formatData);
 ctx.replyWithPhoto({ url: data.countryFlag });
