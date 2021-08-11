@@ -47,7 +47,7 @@ bot.on('text', async (ctx) => {
 Умерло: ${data.todayDeaths}
 `;
 ctx.reply(formatData);
-ctx.replyWithPhoto({ source: data.countryFlag });
+ctx.replyWithPhoto({ url: data.countryFlag });
     }
     go()
         } catch {
