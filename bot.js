@@ -21,18 +21,24 @@ bot.help((ctx) => ctx.reply(COUNTRIES_LIST));
 
 bot.on('text', async (ctx) => {
     let data = {};
-    ///api2///
+    
     
 
     try {
     data = await api.getReportsByCountries(ctx.message.text);
 
-    let newCases;
-    api2.findData({ country: "USA" }).then(res => {
-        console.log(res.todayCases);
-        newCases = res.todayCases;
-    });
+    ///api2///
+    const covidData = async () => {
+        let data = await covid.findData({ country: "russia" });
+        return data.todayCases;
+    };
     ////api2 end////
+    let todayCases;
+    async function today() {
+        todayCases = await covidData();
+        
+    }
+    today();
 
     function numberWithSpaces(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -51,7 +57,7 @@ bot.on('text', async (ctx) => {
 Cлучаи: ${cases}
 Смертей: ${deaths}
 Выздоровело: ${recovered}
-Сегодня: ${newCases}
+Сегодня: ${todayCases}
 `;
     ctx.reply(formatData);
         } catch {
