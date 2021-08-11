@@ -1,7 +1,6 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
-const api = require('covid19-api')
-const api2 = require('corona-info')
+const api = require('corona-info')
 const Markup = require('telegraf').Markup
 const COUNTRIES_LIST = require('./constants');
 
@@ -25,26 +24,25 @@ bot.on('text', async (ctx) => {
     
 
     try {
-    data = await api.getReportsByCountries(ctx.message.text);
 
-    ///api2///
+    ///api///
     const covidData = async () => {
-        let data = await api2.findData({ country: ctx.message.text });
+        let data = await api.findData({ country: ctx.message.text });
         return data;
     };
-    ////api2 end////
+    ////api////
     
   
     async function go() {
         let data = await covidData();
         const formatData = `
 Данные на ${data.updatedDate} в ${data.countryName}:
-Всего случаев: ${data.cases}
-Всего выздоровело: ${data.recovered}
-Всего смертей: ${data.deaths}
-Заболело: ${data.todayCases}
-Выздоровело: ${data.todayRecovered}
-Умерло: ${data.todayDeaths}
+**Всего случаев:** ${data.cases}
+**Всего выздоровело:** ${data.recovered}
+**Всего смертей:** ${data.deaths}
+**Заболело сегодня:** ${data.todayCases}
+**Выздоровело сегодня:** ${data.todayRecovered}
+**Умерло сегодня:** ${data.todayDeaths}
 `;
 ctx.reply(formatData);
 ctx.replyWithPhoto({ url: data.countryFlag });
