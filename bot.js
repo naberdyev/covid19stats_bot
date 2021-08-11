@@ -38,7 +38,7 @@ bot.on('text', async (ctx) => {
     async function go() {
         let data = await covidData();
         const formatData = `
-Данные на ${data.updatedDate} в ${data.countryName} ${data.countryFlag}:
+Данные на ${data.updatedDate} в ${data.countryName}:
 Всего случаев: ${data.cases}
 Всего выздоровело: ${data.recovered}
 Всего смертей: ${data.deaths}
@@ -47,6 +47,7 @@ bot.on('text', async (ctx) => {
 Умерло: ${data.todayDeaths}
 `;
 ctx.reply(formatData);
+ctx.replyWithPhoto({ source: data.countryFlag });
     }
     go()
         } catch {
