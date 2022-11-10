@@ -3,6 +3,9 @@ const { Telegraf } = require('telegraf');
 const api = require('novelcovid');
 const Markup = require('telegraf').Markup;
 const COUNTRIES_LIST = require('./constants');
+api.settings({
+  baseUrl: 'https://disease.sh',
+});
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 bot.start((ctx) =>
@@ -27,7 +30,8 @@ bot.on('text', async (ctx) => {
   try {
     ///api///
     const covidData = async () => {
-      let data = await api.countries({ country });
+      let data = await api.countries({ country: ctx.message.text });
+      console.log(data);
       return data;
     };
     ////api////
@@ -44,7 +48,7 @@ bot.on('text', async (ctx) => {
 Умерло сегодня: ${data.todayDeaths}
 `;
       ctx.reply(formatData);
-      ctx.replyWithPhoto({ url: data.countryFlag });
+      ctx.replyWithPhoto({ url: data.countryInfo.flag });
     }
     go();
   } catch {
