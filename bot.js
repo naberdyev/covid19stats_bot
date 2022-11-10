@@ -28,16 +28,8 @@ bot.on('text', async (ctx) => {
   let data = {};
 
   try {
-    ///api///
-    const covidData = async () => {
-      let data = await api.countries({ country: ctx.message.text });
-      console.log(data);
-      return data;
-    };
-    ////api////
-
     async function go() {
-      let data = await covidData();
+      let data = await await api.countries({ country: ctx.message.text });
       const formatData = `
 Данные на сегодня в ${data.country}:
 Всего случаев: ${data.cases}
